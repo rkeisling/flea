@@ -41,3 +41,14 @@ piece3.attr({
   w: 30,
   h: 10
 }).color('red');
+
+var seconds_left = 30;
+var interval = setInterval(function() {
+    document.getElementById('timer_div').innerHTML = --seconds_left;
+
+    if (seconds_left <= 0)
+    {
+        document.getElementById('timer_div').innerHTML = 'You lose';
+        clearInterval(interval);
+    }
+}, 1000);
