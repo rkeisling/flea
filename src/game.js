@@ -1,3 +1,4 @@
+var population = 7;
 var pW = 20;
 var pH = 10;
 var floor_height = 20;
@@ -5,9 +6,11 @@ var canvasW = 1000;
 var canvasH = 500;
 var margin = 20;
 var max_x = (canvasW) / 2 - margin - pW;
-var max_y = (canvasH - floor_height) / 2 - margin - pH;
+var max_y = (canvasH - floor_height) / 3 - margin - pH;
 // var max_x = (canvasW) - 2 * margin - pW;
 // var max_y = (canvasH) - 2 * margin - pH;
+
+var colors = ['red', 'blue', 'green', 'purple', 'yellow', 'orange']
 
 Crafty.init(canvasW,canvasH, document.getElementById('game'));
 // Crafty.e('2D, DOM, Color').attr({x: 0, y: 0, w: 100, h: 100}).color('#F00');
@@ -74,26 +77,66 @@ Ad.attr({
   y: get_coor(max_y, 1),
   w: pW,
   h: pH
-}).color('orange');
+}).color(colors[Math.floor(Math.random()*colors.length)]);
 
-for (x=0; x<25; x++) {
+for (x=0; x<population; x++) {
   var Ad = Crafty.e('2D, Canvas, Color, Floor');
   Ad.attr({
     x: get_coor(max_x, 1),
     y: get_coor(max_y, 1),
     w: pW,
     h: pH
-  }).color('orange');
+  }).color(colors[Math.floor(Math.random()*colors.length)]);
 };
 
-for (x=0; x<25; x++) {
+for (x=0; x<population; x++) {
   var Ad = Crafty.e('2D, Canvas, Color, Floor');
   Ad.attr({
     x: get_coor(max_x, 0),
     y: get_coor(max_y, 0),
     w: pW,
     h: pH
-  }).color('red');
+  }).color(colors[Math.floor(Math.random()*colors.length)]);
+};
+
+for (x=0; x<population; x++) {
+  var Ad = Crafty.e('2D, Canvas, Color, Floor');
+  Ad.attr({
+    x: get_coor(max_x, 0),
+    y: get_coor(max_y, 1),
+    w: pW,
+    h: pH
+  }).color(colors[Math.floor(Math.random()*colors.length)]);
+};
+
+for (x=0; x<population; x++) {
+  var Ad = Crafty.e('2D, Canvas, Color, Floor');
+  Ad.attr({
+    x: get_coor(max_x, 1),
+    y: get_coor(max_y, 0),
+    w: pW,
+    h: pH
+  }).color(colors[Math.floor(Math.random()*colors.length)]);
+};
+
+for (x=0; x<population; x++) {
+  var Ad = Crafty.e('2D, Canvas, Color, Floor');
+  Ad.attr({
+    x: get_coor(max_x, 1),
+    y: get_coor(max_y, 2),
+    w: pW,
+    h: pH
+  }).color(colors[Math.floor(Math.random()*colors.length)]);
+};
+
+for (x=0; x<population; x++) {
+  var Ad = Crafty.e('2D, Canvas, Color, Floor');
+  Ad.attr({
+    x: get_coor(max_x, 0),
+    y: get_coor(max_y, 2),
+    w: pW,
+    h: pH
+  }).color(colors[Math.floor(Math.random()*colors.length)]);
 };
 
 var Aa = Crafty.e('2D, Canvas, Color, Floor');
