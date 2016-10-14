@@ -58,7 +58,7 @@ function initializeClock(id, endtime) {
 
     secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
 
-    if (t.total <= 0) {
+    if (t.seconds <= 0) {
       clearInterval(timeinterval);
     }
   }
