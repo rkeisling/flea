@@ -173,4 +173,4 @@ winBlock.attr({
   y: canvasH + 50,
   w: pW * 4,
   h: pH
-}).color('red');
+}).color('black');
