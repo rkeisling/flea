@@ -1,5 +1,5 @@
-var population = 18;
-var pW = 7;
+var population = 14;
+var pW = 6;
 var pH = 10;
 var floor_height = 20;
 var canvasW = 1000;
@@ -169,8 +169,8 @@ Ac.attr({
 
 var winBlock = Crafty.e('2D, Canvas, Color, Floor');
 winBlock.attr({
-  x: canvasW/2,
-  y: canvasH + 50,
-  w: pW * 4,
-  h: pH
+  x: get_coor(max_x, 0),
+  y: 15,
+  w: pW * 6,
+  h: 1
 }).color('black');
