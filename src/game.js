@@ -1,5 +1,5 @@
-var population = 7;
-var pW = 20;
+var population = 15;
+var pW = 5;
 var pH = 10;
 var floor_height = 20;
 var canvasW = 1000;
@@ -141,24 +141,24 @@ for (x=0; x<population; x++) {
 
 var Aa = Crafty.e('2D, Canvas, Color, Floor');
 Aa.attr({
-  x: 295,
-  y: 240,
-  w: 10,
-  h: 10
+  x: canvasW/3,
+  y: canvasH - 70,
+  w: pW,
+  h: pH
 }).color('blue');
 
 var Ab = Crafty.e('2D, Canvas, Color, Floor');
 Ab.attr({
   x: canvasW/2,
   y: canvasH - 70,
-  w: 10,
-  h: 10
+  w: pW,
+  h: pH
 }).color('green');
 
 var Ac = Crafty.e('2D, Canvas, Color, Floor');
 Ac.attr({
-  x: 200,
-  y: 274,
-  w: 30,
-  h: 10
+  x: canvasW/3 * 2,
+  y: canvasH - 70,
+  w: pW,
+  h: pH
 }).color('red');
