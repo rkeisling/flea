@@ -1,4 +1,4 @@
-var population = 14;
+var population = 16;
 var pW = 6;
 var pH = 10;
 var floor_height = 20;
