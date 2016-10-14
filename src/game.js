@@ -169,7 +169,7 @@ Ac.attr({
 
 var winBlock = Crafty.e('2D, Canvas, Color, Floor');
 winBlock.attr({
-  x: get_coor(max_x, 0),
+  x: get_coor(canvasW - margin, 0),
   y: 15,
   w: pW * 6,
   h: 1
