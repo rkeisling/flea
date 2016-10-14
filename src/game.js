@@ -1,10 +1,10 @@
-var population = 15;
-var pW = 5;
+var population = 18;
+var pW = 7;
 var pH = 10;
 var floor_height = 20;
 var canvasW = 1000;
 var canvasH = 500;
-var margin = 20;
+var margin = 10;
 var max_x = (canvasW) / 2 - margin - pW;
 var max_y = (canvasH - floor_height) / 3 - margin - pH;
 // var max_x = (canvasW) - 2 * margin - pW;
@@ -36,7 +36,7 @@ var timeEnt = Crafty.e("2D, DOM, Text")
 var flea = Crafty.e('2D, Canvas, Color, Twoway, Gravity, EnterFrame');
 flea.attr({
   x: 0,
-  y: 300,
+  y: canvasH - 20,
   w: 4,
   h: 4
 }).color('#F00').twoway(150, 220).gravity('Floor');
@@ -160,5 +160,13 @@ Ac.attr({
   x: canvasW/3 * 2,
   y: canvasH - 70,
   w: pW,
+  h: pH
+}).color('red');
+
+var winBlock = Crafty.e('2D, Canvas, Color, Floor');
+winBlock.attr({
+  x: canvasW/2,
+  y: canvasH + 50,
+  w: pW * 4,
   h: pH
 }).color('red');
