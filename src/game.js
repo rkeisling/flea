@@ -1,4 +1,4 @@
-var pW = 30;
+var pW = 20;
 var pH = 10;
 var floor_height = 20;
 var canvasW = 1000;
@@ -76,6 +76,26 @@ Ad.attr({
   h: pH
 }).color('orange');
 
+for (x=0; x<25; x++) {
+  var Ad = Crafty.e('2D, Canvas, Color, Floor');
+  Ad.attr({
+    x: get_coor(max_x, 1),
+    y: get_coor(max_y, 1),
+    w: pW,
+    h: pH
+  }).color('orange');
+};
+
+for (x=0; x<25; x++) {
+  var Ad = Crafty.e('2D, Canvas, Color, Floor');
+  Ad.attr({
+    x: get_coor(max_x, 0),
+    y: get_coor(max_y, 0),
+    w: pW,
+    h: pH
+  }).color('red');
+};
+
 var Aa = Crafty.e('2D, Canvas, Color, Floor');
 Aa.attr({
   x: 295,
@@ -86,8 +106,8 @@ Aa.attr({
 
 var Ab = Crafty.e('2D, Canvas, Color, Floor');
 Ab.attr({
-  x: 160,
-  y: 218,
+  x: canvasW/2,
+  y: canvasH - 70,
   w: 10,
   h: 10
 }).color('green');
