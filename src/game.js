@@ -1,7 +1,7 @@
 var pW = 30;
 var pH = 10;
 var floor_height = 20;
-var canvasW = 700;
+var canvasW = 1000;
 var canvasH = 500;
 var margin = 20;
 var max_x = (canvasW) / 2 - margin - pW;
