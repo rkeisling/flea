@@ -5,19 +5,22 @@
     <link href='https://d30y9cdsu7xlg0.cloudfront.net/png/10636-200.png' rel='shortcut icon' />
   </head>
   <body>
-    <div id="timer_div"></div>
     <div id="game"></div>
     <div id="clockdiv">
       <div>
-    <span class="minutes"></span>
-    <div class="smalltext">Minutes</div>
-  </div>
-    <div>
-    <span class="seconds"></span>
-    <div class="smalltext">Seconds</div>
-  </div>
-</div>
-    <script>setTimeout(function(){window.location.href="/flea"},200000);</script>
+        <span class="minutes"></span>
+        <div class="smalltext">Minutes</div>
+      </div>
+      <div>
+        <span class="seconds"></span>
+        <div class="smalltext">Seconds</div>
+      </div>
+    </div>
+    <div id='coordinates'>
+      <span class='x_coor'></span>
+      <span class='y_coor'></span>
+    </div>
+    <script>setTimeout(function(){window.location.href="/flea"},300000);</script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://rawgithub.com/craftyjs/Crafty/release/dist/crafty.js"></script>
     <script src='src/game.js'></script>

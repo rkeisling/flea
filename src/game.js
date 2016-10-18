@@ -44,7 +44,7 @@ flea.attr({
 function getTimeRemaining(endtime) {
   var t = Date.parse(endtime) - Date.parse(new Date());
   var seconds = Math.floor((t / 1000) % 60);
-  var minutes = Math.floor((t / 1000 / 60) % 3);
+  var minutes = Math.floor((t / 1000 / 60) % 5);
   return {
     'minutes': minutes,
     'seconds': seconds
@@ -58,7 +58,7 @@ function initializeClock(id, endtime) {
 
   function updateClock() {
     var t = getTimeRemaining(endtime);
-
+    isWinning();
     minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
     secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
 
@@ -72,9 +72,6 @@ function initializeClock(id, endtime) {
   }
   updateClock();
   var timeinterval = setInterval(updateClock, 1000);
-  function isWinning() {
-
-  }
 }
 
 var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
@@ -179,3 +176,13 @@ winBlock.attr({
   w: pW * 6,
   h: 1
 }).color('black');
+
+function isWinning(){
+  var space = document.getElementById('coordinates');
+  var x_coor = space.querySelector('.x_coor');
+  var y_coor = space.querySelector('.y_coor');
+  var flea_x = flea.x;
+  var flea_y = flea.y;
+  x_coor.innerHTML = 0 + flea_x;
+  y_coor.innerHTML = 0 + flea_y;
+}
