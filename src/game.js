@@ -71,7 +71,7 @@ function initializeClock(id, endtime) {
     }
   }
   updateClock();
-  var timeinterval = setInterval(updateClock, 1000);
+  var timeinterval = setInterval(updateClock, 500);
 }
 
 var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
@@ -181,8 +181,8 @@ function isWinning(){
   var space = document.getElementById('coordinates');
   var x_coor = space.querySelector('.x_coor');
   var y_coor = space.querySelector('.y_coor');
-  var flea_x = flea.x;
-  var flea_y = flea.y;
-  x_coor.innerHTML = 0 + flea_x;
+  var flea_x = Math.floor(flea.x);
+  var flea_y = Math.floor(flea.y);
+  x_coor.innerHTML = 0 + flea_x + ',';
   y_coor.innerHTML = 0 + flea_y;
 }
