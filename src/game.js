@@ -70,10 +70,11 @@ function initializeClock(id, endtime) {
       secondsSpan.style.backgroundColor = 'red';
     }
   }
-
-
   updateClock();
   var timeinterval = setInterval(updateClock, 1000);
+  function isWinning() {
+
+  }
 }
 
 var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
