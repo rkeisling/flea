@@ -1,5 +1,5 @@
 var population = 16;
-var pW = 6;
+var pW = 5.5;
 var pH = 10;
 var floor_height = 20;
 var canvasW = 1000;
@@ -181,8 +181,8 @@ function isWinning(){
   var space = document.getElementById('coordinates');
   var x_coor = space.querySelector('.x_coor');
   var y_coor = space.querySelector('.y_coor');
-  var flea_x = Math.floor(flea.x);
-  var flea_y = Math.floor(flea.y);
+  var flea_x = Math.round(flea.x);
+  var flea_y = Math.round(flea.y);
   x_coor.innerHTML = 0 + flea_x + ',';
   y_coor.innerHTML = 0 + flea_y;
 }
