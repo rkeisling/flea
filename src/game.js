@@ -43,8 +43,8 @@ flea.attr({
 
 function getTimeRemaining(endtime) {
   var t = Date.parse(endtime) - Date.parse(new Date());
-  var seconds = Math.floor((t / 1000) % 60);
-  var minutes = Math.floor((t / 1000 / 60) % 5);
+  var seconds = Math.floor((t / 1000) % 30);
+  var minutes = Math.floor((t / 1000 / 60) % 3);
   return {
     'minutes': minutes,
     'seconds': seconds
