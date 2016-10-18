@@ -35,8 +35,8 @@ var timeEnt = Crafty.e("2D, DOM, Text")
 
 var flea = Crafty.e('2D, Canvas, Color, Twoway, Gravity, EnterFrame');
 flea.attr({
-  x: 0,
-  y: canvasH - 20,
+  x: (canvasW/2) + 1,
+  y: canvasH - 50,
   w: 4,
   h: 4
 }).color('#F00').twoway(150, 220).gravity('Floor');
