@@ -65,6 +65,10 @@ function initializeClock(id, endtime) {
     if (t.minutes <= 0 & t.seconds <= 0) {
       clearInterval(timeinterval);
     }
+    else if (t.minutes < 1) {
+      minutesSpan.style.backgroundColor = 'red';
+      secondsSpan.style.backgroundColor = 'red';
+    }
   }
 
 
