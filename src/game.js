@@ -147,7 +147,7 @@ function isWinning(){
   var win_y = Math.floor(winBlock.y);
   var win_x = Math.floor(winBlock.x);
   var win_w = winBlock.w;
-  if (flea_y == win_y && flea_x == win_x + win_w) {
+  if (flea_y == win_y && flea_x == win_x) {
     winning.innerHTML = "Hey, looks like you win. Accidents happen, I guess."
   }
   else if (flea_y > (canvasH/6)*5) {
