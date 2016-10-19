@@ -1,16 +1,26 @@
+// how many blocks in each of the six sections of the game
 var population = 16;
+// width of each block
 var pW = 5.5;
+// height of each block
 var pH = 10;
 var floor_height = 20;
 var canvasW = 1000;
 var canvasH = 500;
+// how far from the edge blocks can generate
 var margin = 10;
+// max_x and max_y determine the sections
 var max_x = (canvasW) / 2 - margin - pW;
 var max_y = (canvasH - floor_height) / 3 - margin - pH;
-
+// colors that blocks can be, randomly chosen
 var colors = ['red', 'blue', 'green', 'purple', 'yellow', 'orange']
 
+
+// initializes canvas on which the game is played
 Crafty.init(canvasW,canvasH, document.getElementById('game'));
+
+
+// makes the floor, pretty important
 var floor = Crafty.e('Floor, 2D, Canvas, Color');
 floor.attr({
   x: 0,
@@ -19,17 +29,9 @@ floor.attr({
   h: floor_height
 }).color('green').origin('center');
 
-function get_coor(max_val, trans){
-  return Math.floor(Math.random() * max_val) + (trans * max_val);
-}
 
-
-var timeEnt = Crafty.e("2D, DOM, Text")
-  .attr({x: 10, y: 10, w: 50, h: 50, color:'red'})
-  .text=('Seconds Left: 30'),
-  time = 30;
-
-
+// this is the actual gamepiece, the twoway parameters are left/right speed and
+// jump speed in pixels per second, respectively
 var flea = Crafty.e('2D, Canvas, Color, Twoway, Gravity, EnterFrame');
 flea.attr({
   x: (canvasW/2) + 1,
@@ -38,6 +40,8 @@ flea.attr({
   h: 4
 }).color('#F00').twoway(150, 220).gravity('Floor');
 
+
+// from here to initializeClock is a bunch of stuff for the timer
 function getTimeRemaining(endtime) {
   var t = Date.parse(endtime) - Date.parse(new Date());
   var seconds = Math.floor((t / 1000) % 60);
@@ -52,7 +56,6 @@ function initializeClock(id, endtime) {
   var clock = document.getElementById(id);
   var minutesSpan = clock.querySelector('.minutes');
   var secondsSpan = clock.querySelector('.seconds');
-
   function updateClock() {
     var t = getTimeRemaining(endtime);
     isWinning();
@@ -69,27 +72,36 @@ function initializeClock(id, endtime) {
   }
   updateClock();
   var timeinterval = setInterval(updateClock, 500);
+  
 }
-
 var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
 initializeClock('clockdiv', deadline);
 
-function makeBlocks(section_x, section_y) {
-  for (x=0; x<population; x++) {
+
+// gets x and y coordinates for random block placement
+function get_coor(max_val, trans){
+  return Math.floor(Math.random() * max_val) + (trans * max_val);
+}
+// makeBlocks makes all the random blocks
+// pop_change is a change from the population that you want in a certain section
+// so if you want half as many blocks in the middle section, you'd change pop_change
+// to -8 in 0,1 and 1,1
+function makeBlocks(section_x, section_y, pop_change) {
+  for (x=0; x<population+pop_change; x++) {
     Crafty.e('2D, Canvas, Color, Floor')
     .attr({x: get_coor(max_x, section_x), y: get_coor(max_y, section_y), w: pW, h: pH})
     .color(colors[Math.floor(Math.random()*colors.length)]);
   };
 }
+// these make all the random blocks in the game
+makeBlocks(0,0,0);
+makeBlocks(0,1,0);
+makeBlocks(0,2,0);
+makeBlocks(1,0,0);
+makeBlocks(1,1,0);
+makeBlocks(1,2,0);
 
-
-makeBlocks(0,0);
-makeBlocks(0,1);
-makeBlocks(0,2);
-makeBlocks(1,0);
-makeBlocks(1,1);
-makeBlocks(1,2);
-
+// Aa, Ab, and Ac make the three set blocks at the bottom, for ease of access
 var Aa = Crafty.e('2D, Canvas, Color, Floor');
 Aa.attr({
   x: canvasW/3,
@@ -114,6 +126,7 @@ Ac.attr({
   h: pH
 }).color('red');
 
+// this is the block one must reach in order to win and is random
 var winBlock = Crafty.e('2D, Canvas, Color, Floor');
 winBlock.attr({
   x: get_coor(canvasW - margin, 0),
@@ -122,6 +135,9 @@ winBlock.attr({
   h: 1
 }).color('black');
 
+
+// this function checks to see where the flea is and is called in the updateClock
+// function every 0.5 seconds
 function isWinning(){
   var space = document.getElementById('coordinates');
   var x_coor = space.querySelector('.x_coor');
