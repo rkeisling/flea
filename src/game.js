@@ -148,24 +148,24 @@ function isWinning(){
   var win_x = Math.floor(winBlock.x);
   var win_w = winBlock.w;
   if (flea_y == win_y && flea_x == win_x) {
-    winning.innerHTML = "Hey, looks like you win. Accidents happen, I guess."
+    winning.innerHTML = "Hey, looks like you win. Accidents happen, I guess.";
   }
   else if (flea_y > (canvasH/6)*5) {
     winning.innerHTML = "You're not even trying!";
   }
   else if (flea_y > (canvasH/6)*4) {
-    winning.innerHTML = "That's hardly impressive."
+    winning.innerHTML = "That's hardly impressive.";
   }
   else if (flea_y > (canvasH/6)*3) {
-    winning.innerHTML = "What's wrong? Scared of heights?"
+    winning.innerHTML = "What's wrong? Scared of heights?";
   }
   else if (flea_y > (canvasH/6)*2) {
-    winning.innerHTML = "Watch your step up there..."
+    winning.innerHTML = "Watch your step up there...";
   }
   else if (flea_y > (canvasH/6)*1) {
-    winning.innerHTML = "You won't ever make it."
+    winning.innerHTML = "You won't ever make it.";
   }
-  // else if (flea_y < 0) {
-  //   winning.innerHTML = "Hey, get down from up there."
-  // }
+  else if (flea_y < 0) {
+    winning.innerHTML = "Hey, get down from up there.";
+  }
 }
