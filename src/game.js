@@ -7,13 +7,10 @@ var canvasH = 500;
 var margin = 10;
 var max_x = (canvasW) / 2 - margin - pW;
 var max_y = (canvasH - floor_height) / 3 - margin - pH;
-// var max_x = (canvasW) - 2 * margin - pW;
-// var max_y = (canvasH) - 2 * margin - pH;
 
 var colors = ['red', 'blue', 'green', 'purple', 'yellow', 'orange']
 
 Crafty.init(canvasW,canvasH, document.getElementById('game'));
-// Crafty.e('2D, DOM, Color').attr({x: 0, y: 0, w: 100, h: 100}).color('#F00');
 var floor = Crafty.e('Floor, 2D, Canvas, Color');
 floor.attr({
   x: 0,
@@ -77,73 +74,21 @@ function initializeClock(id, endtime) {
 var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
 initializeClock('clockdiv', deadline);
 
-var Ad = Crafty.e('2D, Canvas, Color, Floor');
-Ad.attr({
-  x: get_coor(max_x, 1),
-  y: get_coor(max_y, 1),
-  w: pW,
-  h: pH
-}).color(colors[Math.floor(Math.random()*colors.length)]);
+function makeBlocks(section_x, section_y) {
+  for (x=0; x<population; x++) {
+    Crafty.e('2D, Canvas, Color, Floor')
+    .attr({x: get_coor(max_x, section_x), y: get_coor(max_y, section_y), w: pW, h: pH})
+    .color(colors[Math.floor(Math.random()*colors.length)]);
+  };
+}
 
-for (x=0; x<population; x++) {
-  var Ad = Crafty.e('2D, Canvas, Color, Floor');
-  Ad.attr({
-    x: get_coor(max_x, 1),
-    y: get_coor(max_y, 1),
-    w: pW,
-    h: pH
-  }).color(colors[Math.floor(Math.random()*colors.length)]);
-};
 
-for (x=0; x<population; x++) {
-  var Ad = Crafty.e('2D, Canvas, Color, Floor');
-  Ad.attr({
-    x: get_coor(max_x, 0),
-    y: get_coor(max_y, 0),
-    w: pW,
-    h: pH
-  }).color(colors[Math.floor(Math.random()*colors.length)]);
-};
-
-for (x=0; x<population; x++) {
-  var Ad = Crafty.e('2D, Canvas, Color, Floor');
-  Ad.attr({
-    x: get_coor(max_x, 0),
-    y: get_coor(max_y, 1),
-    w: pW,
-    h: pH
-  }).color(colors[Math.floor(Math.random()*colors.length)]);
-};
-
-for (x=0; x<population; x++) {
-  var Ad = Crafty.e('2D, Canvas, Color, Floor');
-  Ad.attr({
-    x: get_coor(max_x, 1),
-    y: get_coor(max_y, 0),
-    w: pW,
-    h: pH
-  }).color(colors[Math.floor(Math.random()*colors.length)]);
-};
-
-for (x=0; x<population; x++) {
-  var Ad = Crafty.e('2D, Canvas, Color, Floor');
-  Ad.attr({
-    x: get_coor(max_x, 1),
-    y: get_coor(max_y, 2),
-    w: pW,
-    h: pH
-  }).color(colors[Math.floor(Math.random()*colors.length)]);
-};
-
-for (x=0; x<population; x++) {
-  var Ad = Crafty.e('2D, Canvas, Color, Floor');
-  Ad.attr({
-    x: get_coor(max_x, 0),
-    y: get_coor(max_y, 2),
-    w: pW,
-    h: pH
-  }).color(colors[Math.floor(Math.random()*colors.length)]);
-};
+makeBlocks(0,0);
+makeBlocks(0,1);
+makeBlocks(0,2);
+makeBlocks(1,0);
+makeBlocks(1,1);
+makeBlocks(1,2);
 
 var Aa = Crafty.e('2D, Canvas, Color, Floor');
 Aa.attr({
