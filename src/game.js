@@ -69,8 +69,8 @@ function initializeClock(id, endtime) {
   function updateClock() {
     var t = getTimeRemaining(endtime);
     isWinning();
-    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2) + ':';
+    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2) + ' remaining';
 
     if (t.minutes <= 0 & t.seconds <= 0) {
       clearInterval(timeinterval);
@@ -81,7 +81,7 @@ function initializeClock(id, endtime) {
     }
   }
   updateClock();
-  var timeinterval = setInterval(updateClock, 500);
+  var timeinterval = setInterval(updateClock, 1000);
 
 }
 var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
@@ -141,16 +141,12 @@ Ac.attr({
 // function every 0.5 seconds
 function isWinning(){
   var space = document.getElementById('coordinates');
-  var x_coor = space.querySelector('.x_coor');
-  var y_coor = space.querySelector('.y_coor');
   var winning = space.querySelector('.winning');
   var flea_x = Math.floor(flea.x);
   var flea_y = Math.floor(flea.y);
   var win_y = Math.floor(winBlock.y);
   var win_x = Math.floor(winBlock.x);
   var win_w = winBlock.w;
-  x_coor.innerHTML = flea_x + ',';
-  y_coor.innerHTML = flea_y;
   if (flea_y == win_y - 1 && flea_x == win_x + win_w) {
     winning.innerHTML = "Hey, looks like you win. Accidents happen, I guess."
   }
