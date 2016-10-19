@@ -1,5 +1,5 @@
 // how many blocks in each of the six sections of the game
-var population = 16;
+var population = 17;
 // width of each block
 var pW = 5.5;
 // height of each block
@@ -13,7 +13,7 @@ var margin = 10;
 var max_x = (canvasW) / 2 - margin - pW;
 var max_y = (canvasH - floor_height) / 3 - margin - pH;
 // colors that blocks can be, randomly chosen
-var colors = ['red', 'blue', 'green', 'purple', 'yellow', 'orange']
+var colors = ['red', 'blue', 'green', 'purple', 'yellow', 'orange', 'white']
 
 
 // initializes canvas on which the game is played
@@ -147,7 +147,7 @@ function isWinning(){
   var win_y = Math.floor(winBlock.y);
   var win_x = Math.floor(winBlock.x);
   var win_w = winBlock.w;
-  if (flea_y == win_y - 1 && flea_x == win_x + win_w) {
+  if (flea_y == win_y && flea_x == win_x + win_w) {
     winning.innerHTML = "Hey, looks like you win. Accidents happen, I guess."
   }
   else if (flea_y > (canvasH/6)*5) {
