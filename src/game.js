@@ -30,6 +30,16 @@ floor.attr({
 }).color('green').origin('center');
 
 
+// this is the block one must reach in order to win and is random
+var winBlock = Crafty.e('2D, Canvas, Color, Floor');
+winBlock.attr({
+  x: get_coor(canvasW - margin, 0),
+  y: 15,
+  w: pW * 6,
+  h: 1
+}).color('black');
+
+
 // this is the actual gamepiece, the twoway parameters are left/right speed and
 // jump speed in pixels per second, respectively
 var flea = Crafty.e('2D, Canvas, Color, Twoway, Gravity, EnterFrame');
@@ -72,7 +82,7 @@ function initializeClock(id, endtime) {
   }
   updateClock();
   var timeinterval = setInterval(updateClock, 500);
-  
+
 }
 var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
 initializeClock('clockdiv', deadline);
@@ -126,15 +136,6 @@ Ac.attr({
   h: pH
 }).color('red');
 
-// this is the block one must reach in order to win and is random
-var winBlock = Crafty.e('2D, Canvas, Color, Floor');
-winBlock.attr({
-  x: get_coor(canvasW - margin, 0),
-  y: 15,
-  w: pW * 6,
-  h: 1
-}).color('black');
-
 
 // this function checks to see where the flea is and is called in the updateClock
 // function every 0.5 seconds
@@ -142,9 +143,33 @@ function isWinning(){
   var space = document.getElementById('coordinates');
   var x_coor = space.querySelector('.x_coor');
   var y_coor = space.querySelector('.y_coor');
+  var winning = space.querySelector('.winning');
   var flea_x = Math.floor(flea.x);
   var flea_y = Math.floor(flea.y);
-  var win_x = Math.floor()
+  var win_y = Math.floor(winBlock.y);
+  var win_x = Math.floor(winBlock.x);
+  var win_w = winBlock.w;
   x_coor.innerHTML = flea_x + ',';
   y_coor.innerHTML = flea_y;
+  if (flea_y == win_y - 1 && flea_x == win_x + win_w) {
+    winning.innerHTML = "Hey, looks like you win. Accidents happen, I guess."
+  }
+  else if (flea_y > (canvasH/6)*5) {
+    winning.innerHTML = "You're not even trying!";
+  }
+  else if (flea_y > (canvasH/6)*4) {
+    winning.innerHTML = "That's hardly impressive."
+  }
+  else if (flea_y > (canvasH/6)*3) {
+    winning.innerHTML = "What's wrong? Scared of heights?"
+  }
+  else if (flea_y > (canvasH/6)*2) {
+    winning.innerHTML = "Watch your step up there..."
+  }
+  else if (flea_y > (canvasH/6)*1) {
+    winning.innerHTML = "You won't ever make it."
+  }
+  else if (flea_y < 0) {
+    winning.innerHTML = "Hey, get down from up there."
+  }
 }
