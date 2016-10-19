@@ -165,7 +165,7 @@ function isWinning(){
   else if (flea_y > (canvasH/6)*1) {
     winning.innerHTML = "You won't ever make it."
   }
-  else if (flea_y < 0) {
-    winning.innerHTML = "Hey, get down from up there."
-  }
+  // else if (flea_y < 0) {
+  //   winning.innerHTML = "Hey, get down from up there."
+  // }
 }
