@@ -1,7 +1,7 @@
 // how many blocks in each of the six sections of the game
 var population = 17;
 // width of each block
-var pW = 5.5;
+var pW = 5;
 // height of each block
 var pH = 10;
 var floor_height = 20;
@@ -75,8 +75,7 @@ function initializeClock(id, endtime) {
       clearInterval(timeinterval);
     }
     else if (t.minutes < 1) {
-      minutesSpan.style.backgroundColor = 'red';
-      secondsSpan.style.backgroundColor = 'red';
+      clockdiv.style.backgroundColor = 'red';
     }
   }
   updateClock();
@@ -146,8 +145,8 @@ function isWinning(){
   var win_y = Math.floor(winBlock.y);
   var win_x = Math.floor(winBlock.x);
   var win_w = winBlock.w;
-  if (flea_y == win_y && flea_x == win_x) {
-    winning.innerHTML = "Hey, looks like you win. Accidents happen, I guess.";
+  if ((win_x < flea_x && flea_x < (win_x + win_w)) && (win_y > flea_y && flea_y > (win_y - 5))) {
+    winning.innerHTML = "Hey, looks like you win. Accidents happen, I guess. You can refresh the page to play again!";
   }
   else if (flea_y > (canvasH/6)*5) {
     winning.innerHTML = "You're not even trying!";
@@ -166,6 +165,12 @@ function isWinning(){
   }
   else if (flea_y < 0) {
     winning.innerHTML = "Hey, get down from up there.";
+  }
+  else if (flea_x < 0) {
+    winning.innerHTML = 'Great job, you fell off the map.'
+  }
+  else {
+    winning.innerHTML = "You're kind of a big deal.";
   }
 }
 function rand_song() {
