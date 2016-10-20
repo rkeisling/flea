@@ -13,8 +13,7 @@ var margin = 10;
 var max_x = (canvasW) / 2 - margin - pW;
 var max_y = (canvasH - floor_height) / 3 - margin - pH;
 // colors that blocks can be, randomly chosen
-var colors = ['red', 'blue', 'green', 'purple', 'yellow', 'orange', 'white']
-
+var colors = ['red', 'blue', 'green', 'purple', 'yellow', 'orange', 'white'];
 
 // initializes canvas on which the game is played
 Crafty.init(canvasW,canvasH, document.getElementById('game'));
@@ -168,4 +167,8 @@ function isWinning(){
   else if (flea_y < 0) {
     winning.innerHTML = "Hey, get down from up there.";
   }
+}
+function rand_song() {
+  var songs = ['assets/sax.mp3', 'assets/run.mp3'];
+  song = songs[Math.floor(Math.random()*songs.length)];
 }
