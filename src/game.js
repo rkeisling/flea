@@ -1,7 +1,7 @@
 // how many blocks in each of the six sections of the game
-var population = 17;
+var population = 16;
 // width of each block
-var pW = 5;
+var pW = 4;
 // height of each block
 var pH = 10;
 var floor_height = 20;
