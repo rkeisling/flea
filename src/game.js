@@ -19,6 +19,57 @@ var colors = ['red', 'blue', 'green', 'purple', 'yellow', 'orange', 'white'];
 Crafty.init(canvasW,canvasH, document.getElementById('game'));
 
 
+// gets x and y coordinates for random block placement
+function get_coor(max_val, trans){
+  return Math.floor(Math.random() * max_val) + (trans * max_val);
+}
+// makeBlocks makes all the random blocks
+// pop_change is a change from the population that you want in a certain section
+// so if you want half as many blocks in the middle section, you'd change pop_change
+// to -8 in 0,1 and 1,1
+function makeBlocks(section_x, section_y, pop_change) {
+  var blocks = new Array(population);
+  for (x=0; x<population+pop_change; x++) {
+    blocks[x] = Crafty.e('2D, Canvas, Color, Floor')
+    .attr({x: get_coor(max_x, section_x), y: get_coor(max_y, section_y), w: pW, h: pH})
+    .color(colors[Math.floor(Math.random()*colors.length)]);
+  };
+  return blocks
+}
+// these make all the random blocks in the game
+makeBlocks(0,0,0);
+makeBlocks(0,1,0);
+makeBlocks(0,2,0);
+makeBlocks(1,0,0);
+makeBlocks(1,1,0);
+makeBlocks(1,2,0);
+
+// Aa, Ab, and Ac make the three set blocks at the bottom, for ease of access
+var Aa = Crafty.e('2D, Canvas, Color, Floor');
+Aa.attr({
+  x: canvasW/3,
+  y: canvasH - 70,
+  w: pW,
+  h: pH
+}).color('blue');
+
+var Ab = Crafty.e('2D, Canvas, Color, Floor');
+Ab.attr({
+  x: canvasW/2,
+  y: canvasH - 70,
+  w: pW,
+  h: pH
+}).color('green');
+
+var Ac = Crafty.e('2D, Canvas, Color, Floor, Gravity');
+Ac.attr({
+  x: canvasW/3 * 2,
+  y: canvasH - 70,
+  w: pW,
+  h: pH
+}).color('red');
+
+
 // makes the floor, pretty important
 var floor = Crafty.e('Floor, 2D, Canvas, Color');
 floor.attr({
@@ -55,7 +106,6 @@ function getTimeRemaining(endtime) {
   var t = Date.parse(endtime) - Date.parse(new Date());
   var seconds = Math.floor((t / 1000) % 60);
   var minutes = Math.floor((t / 1000 / 60) % 3);
-  clockdiv.style.backgroundColor = 'white';
   return {
     'minutes': minutes,
     'seconds': seconds
@@ -87,53 +137,7 @@ var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
 initializeClock('clockdiv', deadline);
 
 
-// gets x and y coordinates for random block placement
-function get_coor(max_val, trans){
-  return Math.floor(Math.random() * max_val) + (trans * max_val);
-}
-// makeBlocks makes all the random blocks
-// pop_change is a change from the population that you want in a certain section
-// so if you want half as many blocks in the middle section, you'd change pop_change
-// to -8 in 0,1 and 1,1
-function makeBlocks(section_x, section_y, pop_change) {
-  for (x=0; x<population+pop_change; x++) {
-    Crafty.e('2D, Canvas, Color, Floor')
-    .attr({x: get_coor(max_x, section_x), y: get_coor(max_y, section_y), w: pW, h: pH})
-    .color(colors[Math.floor(Math.random()*colors.length)]);
-  };
-}
-// these make all the random blocks in the game
-makeBlocks(0,0,0);
-makeBlocks(0,1,0);
-makeBlocks(0,2,0);
-makeBlocks(1,0,0);
-makeBlocks(1,1,0);
-makeBlocks(1,2,0);
 
-// Aa, Ab, and Ac make the three set blocks at the bottom, for ease of access
-var Aa = Crafty.e('2D, Canvas, Color, Floor');
-Aa.attr({
-  x: canvasW/3,
-  y: canvasH - 70,
-  w: pW,
-  h: pH
-}).color('blue');
-
-var Ab = Crafty.e('2D, Canvas, Color, Floor');
-Ab.attr({
-  x: canvasW/2,
-  y: canvasH - 70,
-  w: pW,
-  h: pH
-}).color('green');
-
-var Ac = Crafty.e('2D, Canvas, Color, Floor');
-Ac.attr({
-  x: canvasW/3 * 2,
-  y: canvasH - 70,
-  w: pW,
-  h: pH
-}).color('red');
 
 
 // this function checks to see where the flea is and is called in the updateClock
@@ -174,7 +178,7 @@ function isWinning(){
     winning.innerHTML = "You're kind of a big deal.";
   }
 }
-function rand_song() {
-  var songs = ['assets/sax.mp3', 'assets/run.mp3'];
-  song = songs[Math.floor(Math.random()*songs.length)];
+function drop_block() {
+  block2drop = blocks[Math.floor(Math.random()*blocks.length)];
+  block2drop.gravity('Floor')
 }
