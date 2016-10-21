@@ -6,14 +6,14 @@ var pW = 4;
 var pH = 10;
 var floor_height = 20;
 var canvasW = 1000;
-var canvasH = 500;
+var canvasH = 525;
 // how far from the edge blocks can generate
 var margin = 10;
 // max_x and max_y determine the sections
 var max_x = (canvasW) / 2 - margin - pW;
 var max_y = (canvasH - floor_height) / 3 - margin - pH;
 // colors that blocks can be, randomly chosen
-var colors = ['red', 'blue', 'green', 'purple', 'yellow', 'orange', 'white'];
+var colors = ['red', 'blue', 'green', 'purple', 'yellow', 'orange'];
 
 // initializes canvas on which the game is played
 Crafty.init(canvasW,canvasH, document.getElementById('game'));
@@ -122,10 +122,10 @@ function initializeClock(id, endtime) {
     minutesSpan.innerHTML = ('0' + t.minutes).slice(-2) + ':';
     secondsSpan.innerHTML = ('0' + t.seconds).slice(-2) + ' remaining';
 
-    if (t.minutes <= 0 & t.seconds <= 0) {
+    if (t.minutes <= 0 && t.seconds <= 0) {
       clearInterval(timeinterval);
     }
-    else if (t.minutes < 1) {
+    else if (t.minutes < 1 && clockdiv.style.backgroundColor !== 'green') {
       clockdiv.style.backgroundColor = 'red';
     }
   }
@@ -141,7 +141,7 @@ initializeClock('clockdiv', deadline);
 
 
 // this function checks to see where the flea is and is called in the updateClock
-// function every 0.5 seconds
+// function every second
 function isWinning(){
   var space = document.getElementById('coordinates');
   var winning = space.querySelector('.winning');
@@ -151,6 +151,7 @@ function isWinning(){
   var win_x = Math.floor(winBlock.x);
   var win_w = winBlock.w;
   if ((win_x < flea_x && flea_x < (win_x + win_w)) && (win_y > flea_y && flea_y > (win_y - 5))) {
+    clockdiv.style.backgroundColor = 'green';
     winning.innerHTML = "Hey, looks like you win. Accidents happen, I guess. You can refresh the page to play again!";
   }
   else if (flea_y > (canvasH/6)*5) {
@@ -181,4 +182,12 @@ function isWinning(){
 function drop_block() {
   block2drop = blocks[Math.floor(Math.random()*blocks.length)];
   block2drop.gravity('Floor')
+}
+setTimeout(function(){window.location.href="/flea"},127000);
+if (clockdiv.style.backgroundColor !== 'green') {
+  setTimeout(function play(){
+    var audio = document.getElementById('audio').play();
+    winning.innerHTML = 'YOU DIED. (The page will refresh soon!)';
+    clockdiv.style.backgroundColor = 'red';
+  }, 120000);
 }
