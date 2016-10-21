@@ -6,7 +6,7 @@ var pW = 4;
 var pH = 10;
 var floor_height = 20;
 var canvasW = 1000;
-var canvasH = 200;
+var canvasH = 520;
 // how far from the edge blocks can generate
 var margin = 10;
 // max_x and max_y determine the sections
