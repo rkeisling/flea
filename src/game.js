@@ -1,5 +1,5 @@
 // how many blocks in each of the six sections of the game
-var population = 17;
+var population = 15;
 // width of each block
 var pW = 4;
 // height of each block
@@ -181,7 +181,7 @@ function isWinning(){
   else if (flea_y < 0 && winning.innerHTML !== "Hey, looks like you win. Accidents happen, I guess. You can refresh the page to play again!") {
     winning.innerHTML = "Hey, get down from up there.";
   }
-  else if (flea_x < 0 && winning.innerHTML !== "Hey, looks like you win. Accidents happen, I guess. You can refresh the page to play again!") {
+  else if (flea_x < 0 || flea_x > canvasW && winning.innerHTML !== "Hey, looks like you win. Accidents happen, I guess. You can refresh the page to play again!") {
     winning.innerHTML = 'Great job, you fell off the map.'
   }
   else if (winning.innerHTML !== "Hey, looks like you win. Accidents happen, I guess. You can refresh the page to play again!") {
