@@ -105,7 +105,7 @@ flea.attr({
 function getTimeRemaining(endtime) {
   var t = Date.parse(endtime) - Date.parse(new Date());
   var seconds = Math.floor((t / 1000) % 60);
-  var minutes = Math.floor((t / 1000 / 60) % 2);
+  var minutes = Math.floor((t / 1000 / 60) % 1);
   return {
     'minutes': minutes,
     'seconds': seconds
@@ -133,7 +133,7 @@ function initializeClock(id, endtime) {
     if (t.minutes <= 0 && t.seconds <= 0) {
       clearInterval(timeinterval);
     }
-    else if (t.minutes < 1 && clockdiv.style.backgroundColor !== 'green') {
+    else if (t.seconds < 30 && clockdiv.style.backgroundColor !== 'green') {
       clockdiv.style.backgroundColor = 'red';
     }
   }
