@@ -6,7 +6,7 @@ var pW = 4;
 var pH = 10;
 var floor_height = 20;
 var canvasW = 1000;
-var canvasH = 525;
+var canvasH = 200;
 // how far from the edge blocks can generate
 var margin = 10;
 // max_x and max_y determine the sections
@@ -117,8 +117,16 @@ function initializeClock(id, endtime) {
   var minutesSpan = clock.querySelector('.minutes');
   var secondsSpan = clock.querySelector('.seconds');
   function updateClock() {
-    var t = getTimeRemaining(endtime);
     isWinning();
+    if (clockdiv.style.backgroundColor == 'green') {
+      var cur_sec = t.seconds;
+      var cur_min = t.minutes;
+    }
+    var t = getTimeRemaining(endtime);
+    if (isWinning == true) {
+      minutesSpan.innerHTML = ('0' + cur_min).slice(-2) + ':';
+      secondsSpan.innerHTML = ('0' + cur_sec).slice(-2) + ' remaining';
+    }
     minutesSpan.innerHTML = ('0' + t.minutes).slice(-2) + ':';
     secondsSpan.innerHTML = ('0' + t.seconds).slice(-2) + ' remaining';
 
@@ -153,29 +161,30 @@ function isWinning(){
   if ((win_x < flea_x && flea_x < (win_x + win_w)) && (win_y > flea_y && flea_y > (win_y - 5))) {
     clockdiv.style.backgroundColor = 'green';
     winning.innerHTML = "Hey, looks like you win. Accidents happen, I guess. You can refresh the page to play again!";
+    return true;
   }
-  else if (flea_y > (canvasH/6)*5) {
+  else if (flea_y > (canvasH/6)*5 && winning.innerHTML !== "Hey, looks like you win. Accidents happen, I guess. You can refresh the page to play again!") {
     winning.innerHTML = "You're not even trying!";
   }
-  else if (flea_y > (canvasH/6)*4) {
+  else if (flea_y > (canvasH/6)*4 && winning.innerHTML !== "Hey, looks like you win. Accidents happen, I guess. You can refresh the page to play again!") {
     winning.innerHTML = "That's hardly impressive.";
   }
-  else if (flea_y > (canvasH/6)*3) {
+  else if (flea_y > (canvasH/6)*3 && winning.innerHTML !== "Hey, looks like you win. Accidents happen, I guess. You can refresh the page to play again!") {
     winning.innerHTML = "What's wrong? Scared of heights?";
   }
-  else if (flea_y > (canvasH/6)*2) {
+  else if (flea_y > (canvasH/6)*2 && winning.innerHTML !== "Hey, looks like you win. Accidents happen, I guess. You can refresh the page to play again!") {
     winning.innerHTML = "Watch your step up there...";
   }
-  else if (flea_y > (canvasH/6)*1) {
+  else if (flea_y > (canvasH/6)*1 && winning.innerHTML !== "Hey, looks like you win. Accidents happen, I guess. You can refresh the page to play again!") {
     winning.innerHTML = "You won't ever make it.";
   }
-  else if (flea_y < 0) {
+  else if (flea_y < 0 && winning.innerHTML !== "Hey, looks like you win. Accidents happen, I guess. You can refresh the page to play again!") {
     winning.innerHTML = "Hey, get down from up there.";
   }
-  else if (flea_x < 0) {
+  else if (flea_x < 0 && winning.innerHTML !== "Hey, looks like you win. Accidents happen, I guess. You can refresh the page to play again!") {
     winning.innerHTML = 'Great job, you fell off the map.'
   }
-  else {
+  else if (winning.innerHTML !== "Hey, looks like you win. Accidents happen, I guess. You can refresh the page to play again!") {
     winning.innerHTML = "You're kind of a big deal.";
   }
 }
@@ -186,8 +195,10 @@ function drop_block() {
 setTimeout(function(){window.location.href="/flea"},127000);
 if (clockdiv.style.backgroundColor !== 'green') {
   setTimeout(function play(){
-    var audio = document.getElementById('audio').play();
-    winning.innerHTML = 'YOU DIED. (The page will refresh soon!)';
-    clockdiv.style.backgroundColor = 'red';
+    if (clockdiv.style.backgroundColor !== 'green') {
+      var audio = document.getElementById('audio').play();
+      winning.innerHTML = 'YOU DIED. (The page will refresh soon!)';
+      clockdiv.style.backgroundColor = 'red';
+  }
   }, 120000);
 }
