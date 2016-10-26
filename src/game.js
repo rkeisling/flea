@@ -192,7 +192,7 @@ function drop_block() {
   block2drop = blocks[Math.floor(Math.random()*blocks.length)];
   block2drop.gravity('Floor')
 }
-setTimeout(function(){window.location.href="/flea"},127000);
+setTimeout(function(){window.location.href="/flea"},67000);
 if (clockdiv.style.backgroundColor !== 'green') {
   setTimeout(function play(){
     if (clockdiv.style.backgroundColor !== 'green') {
@@ -200,5 +200,5 @@ if (clockdiv.style.backgroundColor !== 'green') {
       winning.innerHTML = 'YOU DIED. (The page will refresh soon!)';
       clockdiv.style.backgroundColor = 'red';
   }
-  }, 120000);
+}, 60000);
 }
