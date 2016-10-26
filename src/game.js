@@ -15,6 +15,7 @@ var max_y = (canvasH - floor_height) / 3 - margin - pH;
 // colors that blocks can be, randomly chosen
 var colors = ['red', 'blue', 'green', 'purple', 'yellow', 'orange'];
 
+var how_long = 60000;
 // initializes canvas on which the game is played
 Crafty.init(canvasW,canvasH, document.getElementById('game'));
 
@@ -161,6 +162,7 @@ function isWinning(){
   if ((win_x < flea_x && flea_x < (win_x + win_w)) && (win_y > flea_y && flea_y > (win_y - 5))) {
     clockdiv.style.backgroundColor = 'green';
     winning.innerHTML = "Hey, looks like you win. Accidents happen, I guess. You can refresh the page to play again!";
+    how_long+=1000000
     return true;
   }
   else if (flea_y > (canvasH/6)*5 && winning.innerHTML !== "Hey, looks like you win. Accidents happen, I guess. You can refresh the page to play again!") {
@@ -192,13 +194,9 @@ function drop_block() {
   block2drop = blocks[Math.floor(Math.random()*blocks.length)];
   block2drop.gravity('Floor')
 }
-setTimeout(function(){window.location.href="/flea"},67000);
-if (clockdiv.style.backgroundColor !== 'green') {
-  setTimeout(function play(){
-    if (clockdiv.style.backgroundColor !== 'green') {
-      var audio = document.getElementById('audio').play();
-      winning.innerHTML = 'YOU DIED. (The page will refresh soon!)';
-      clockdiv.style.backgroundColor = 'red';
-  }
-}, 60000);
-}
+setTimeout(function play(){
+    var audio = document.getElementById('audio').play();
+    winning.innerHTML = 'YOU DIED. (The page will refresh soon!)';
+    clockdiv.style.backgroundColor = 'red';
+}, how_long);
+setTimeout(function(){window.location.href="/flea"},(how_long+7000));
