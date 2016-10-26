@@ -6,7 +6,7 @@ var pW = 4;
 var pH = 10;
 var floor_height = 20;
 var canvasW = 1000;
-var canvasH = 520;
+var canvasH = 100;
 // how far from the edge blocks can generate
 var margin = 10;
 // max_x and max_y determine the sections
@@ -162,7 +162,6 @@ function isWinning(){
   if ((win_x < flea_x && flea_x < (win_x + win_w)) && (win_y > flea_y && flea_y > (win_y - 5))) {
     clockdiv.style.backgroundColor = 'green';
     winning.innerHTML = "Hey, looks like you win. Accidents happen, I guess. You can refresh the page to play again!";
-    how_long+=1000000
     return true;
   }
   else if (flea_y > (canvasH/6)*5 && winning.innerHTML !== "Hey, looks like you win. Accidents happen, I guess. You can refresh the page to play again!") {
@@ -196,7 +195,7 @@ function drop_block() {
 }
 setTimeout(function play(){
     var audio = document.getElementById('audio').play();
-    winning.innerHTML = 'YOU DIED. (The page will refresh soon!)';
+    winning.innerText = 'YOU DIED. (The page will refresh soon!)';
     clockdiv.style.backgroundColor = 'red';
 }, how_long);
 setTimeout(function(){window.location.href="/flea"},(how_long+7000));
