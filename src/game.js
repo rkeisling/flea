@@ -19,6 +19,11 @@ var how_long = 60000;
 // initializes canvas on which the game is played
 Crafty.init(canvasW,canvasH, document.getElementById('game'));
 
+document.onkeydown = function(e) {
+  if (e.keyCode == 38) {
+    document.getElementById("audio2").play();
+  }
+};
 
 // gets x and y coordinates for random block placement
 function get_coor(max_val, trans){
@@ -84,7 +89,7 @@ floor.attr({
 // this is the block one must reach in order to win and is random
 var winBlock = Crafty.e('2D, Canvas, Color, Floor');
 winBlock.attr({
-  x: get_coor(canvasW - margin, 0),
+  x: get_coor(canvasW - (margin*2), 0),
   y: 15,
   w: pW * 6,
   h: 1
@@ -161,7 +166,8 @@ function isWinning(){
   var win_w = winBlock.w;
   if ((win_x < flea_x && flea_x < (win_x + win_w)) && (win_y > flea_y && flea_y > (win_y - 5))) {
     clockdiv.style.backgroundColor = 'green';
-    winning.innerHTML = "Hey, looks like you win. Accidents happen, I guess. You can refresh the page to play again!";
+    document.getElementById("audio3").play();
+    winning.innerHTML = "Hey, looks like you win. Accidents happen, I guess. The page will automatically refresh soon!";
     return true;
   }
   else if (flea_y > (canvasH/6)*5 && winning.innerHTML !== "Hey, looks like you win. Accidents happen, I guess. You can refresh the page to play again!") {
