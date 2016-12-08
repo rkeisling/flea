@@ -19,11 +19,12 @@ var how_long = 60000;
 // initializes canvas on which the game is played
 Crafty.init(canvasW,canvasH, document.getElementById('game'));
 
-document.onkeydown = function(e) {
-  if (e.keyCode == 38) {
-    document.getElementById("audio2").play();
-  }
-};
+// this plays a sound whenever the flea jumps - i took it out because it was annoying
+// document.onkeydown = function(e) {
+//   if (e.keyCode == 38) {
+//     document.getElementById("audio2").play();
+//   }
+// };
 
 // gets x and y coordinates for random block placement
 function get_coor(max_val, trans){
