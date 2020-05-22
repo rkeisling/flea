@@ -201,7 +201,7 @@ function drop_block() {
   block2drop.gravity('Floor')
 }
 setTimeout(function play(){
-    var audio = document.getElementById('audio').play();
+    //var audio = document.getElementById('audio').play();
     winning.innerText = 'YOU DIED. (The page will refresh soon!)';
     clockdiv.style.backgroundColor = 'red';
 }, how_long);
